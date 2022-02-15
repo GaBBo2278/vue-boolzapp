@@ -36,10 +36,10 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input class="search-input" type="text" placeholder="Cerca o inizia una nuova chat">
             </div>
-            <div class="contact">
-                <img src="./img/avatar_1.jpg">
+            <div class="contact" v-for="contact in contacts">
+                <img :src="`./img/avatar${contact.avatar}.jpg`">
                 <div class="contact-info">
-                    <span>Nome utente</span>
+                    <span>{{contact.name}}</span>
                     <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique harum nesciunt laborum dolores blanditiis doloremque reprehenderit esse mollitia quae incidunt aliquam magnam saepe explicabo quos quaerat voluptatem sit, dicta eveniet.</span>
                 </div>
             </div>
@@ -73,5 +73,8 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
 </body>
 </html>
