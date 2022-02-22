@@ -87,6 +87,45 @@ const app = new Vue (
                     ],
                 },
             ],
+            active: 0,
+            nuovoMessaggio: "",
+            cercaContatto: "",
+        },
+        methods: {
+            contattoAttivo(index) {
+                this.active = index;
+            },
+            invioMessaggio() {
+                const nuovoMessaggioObj = {
+                    date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                    text: this.nuovoMessaggio,
+                    status: 'sent'
+                };
+                this.contacts[this.active].messages.push(nuovoMessaggioObj);
+                this.nuovoMessaggio = '';
+
+                const messaggioRisposta = {
+                    date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                    text: "OKAY",
+                    status: 'received'
+                };
+
+                let that = this;
+
+                setTimeout(() => {
+                    that.contacts[that.active].messages.push(messaggioRisposta);
+                }, 1000);
+            },
+            cercaContatti() {
+                this.contacts.forEach((element) => {
+                    if (element.name.toLowerCase().includes(this.cercaContatto.toLowerCase())) {
+                        element.visible = true;
+                    } else {
+                        element.visible = false;
+                    }
+                
+                });
+            }   
         }
     }
 );
